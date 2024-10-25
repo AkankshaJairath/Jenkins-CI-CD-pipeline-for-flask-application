@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 // Deploy to staging (example: simple gunicorn command)
-                sh './$VENV_PATH/bin/gunicorn -b 0.0.0.0:5000 app:app'
+                sh "$VENV_PATH/bin/gunicorn" -b 0.0.0.0:5000app:app &
             }
         }
     }
