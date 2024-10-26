@@ -26,7 +26,10 @@ pipeline {
                 // Deploy to staging (example: simple gunicorn command)
                 script {
                     sh """
-                    nohup $VENV_PATH/bin/gunicorn -b 0.0.0.0:5000 app:app &
+                    sudo cp myflaskapp.service /etc/systemd/system/myflaskapp.service
+                    sudo systemctl start myflaskapp
+                    sudo systemctl enable myflaskapp
+                    sudo systemctl status myflaskapp
                     """
                 }
             }
