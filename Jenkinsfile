@@ -64,7 +64,7 @@ pipeline {
                 mimeType: 'text/html'
             )
         }
-        abort{
+        aborted{
           emailext (
                 to: 'akanshajairath123@gmail.com',
                 subject: "Abort: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
