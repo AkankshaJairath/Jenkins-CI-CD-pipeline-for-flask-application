@@ -37,10 +37,46 @@ pipeline {
     }
     post {
         success {
-            echo 'Build succeeded!'
+            emailext (
+                to: 'akanshajairath123@gmail.com',
+                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
+                     Good news! The build for '${env.JOB_NAME} [${env.BUILD_NUMBER}]' was successful.
+                     
+                     Project: ${env.JOB_NAME}
+                     Build Number: ${env.BUILD_NUMBER}
+                     URL: ${env.BUILD_URL}
+                """,
+                mimeType: 'text/html'
+            )
         }
         failure {
-            echo 'Build failed!'
+           emailext (
+                to: 'akanshajairath123@gmail.com',
+                subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
+                     Unfortunately, the build for '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.
+                     
+                     Project: ${env.JOB_NAME}
+                     Build Number: ${env.BUILD_NUMBER}
+                     URL: ${env.BUILD_URL}
+                """,
+                mimeType: 'text/html'
+            )
         }
+        abort{
+          emailext (
+                to: 'akanshajairath123@gmail.com',
+                subject: "Abort: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
+                     Unfortunately, the build for '${env.JOB_NAME} [${env.BUILD_NUMBER}]' Aborted.
+                     
+                     Project: ${env.JOB_NAME}
+                     Build Number: ${env.BUILD_NUMBER}
+                     URL: ${env.BUILD_URL}
+                """,
+                mimeType: 'text/html'
+            )
+            
     }
 }
