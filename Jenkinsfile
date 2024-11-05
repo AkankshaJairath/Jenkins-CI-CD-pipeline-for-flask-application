@@ -37,7 +37,7 @@ pipeline {
     }
     post {
         success {
-            emailext (
+            mail (
                 to: 'akanshajairath123@gmail.com',
                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
@@ -51,7 +51,7 @@ pipeline {
             )
         }
         failure {
-           emailext (
+           mail (
                 to: 'akanshajairath123@gmail.com',
                 subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
@@ -65,7 +65,7 @@ pipeline {
             )
         }
         aborted{
-          emailext (
+          mail (
                 to: 'akanshajairath123@gmail.com',
                 subject: "Abort: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
