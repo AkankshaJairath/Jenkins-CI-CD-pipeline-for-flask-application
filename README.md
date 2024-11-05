@@ -52,3 +52,5 @@ pip install -r requirements.txt
 Open Jenkins and create a new Pipeline project.
 In the project configuration, point to the repository URL.
 Specify the Jenkinsfile in the repository for pipeline configuration.
+
+## For Notification , Please refer Notification.docx
